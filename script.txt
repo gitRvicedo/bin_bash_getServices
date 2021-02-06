@@ -1,0 +1,35 @@
+#!/bin/bash
+
+#Tenes que instalar jq: es una herramienta muy potente, pensada para trabajar con documentos JSON
+#  Para instalar jq en Ubuntu ejecutar los siguientes comandos:
+#  sudo apt-get update --> te pide clave de NT
+#  sudo apt-get install jq
+
+users_id=(71665538 66146765 132961968 15096445 172753273 54152646)
+for users_id in ${users_id[*]}
+do
+curl=$(curl -s "https://api.mercadolibre.com/users/$users_id/shipping_preferences" | jq -c '.services')
+echo "$users_id: $curl"
+done
+
+# A tu entender, que se busca obtener como output del script?
+#    Busca los services asociados a los users
+#
+
+#Podrías detallar que se hace en cada línea del script?
+#  !/bin/bash                                                                					-> indica el interprete de comandos, define la shell que se utiliza
+#  users_id=(71665538 66146765 132961968 15096445 172753273 54152646)        					-> define array con los users_id 
+#  for users_id in ${users_id[*]}                                            					-> los elementos del array los los coloca en la variable
+#  do                                                                        					-> comienzo del blucle do
+#  curl=$(curl -s "https://api.mercadolibre.com/users/$users_id/shipping_preferences" | jq -c '.services')  	-> verifica la conectividad de la url, se conecta, busca los datos de services y los asocia a la variable curl
+#  echo "$users_id: $curl"											-> muestra por pantalla los resultados ej:  71665538: [311,591,801,881,1181,136171,136501,145041] 	
+#  done														-> cierra la iteracion	
+
+#Cuántas líneas se imprimen como output?
+#  imprime 6 lineas una por cada user_id
+#	71665538: [311,591,801,881,1181,136171,136501,145041]
+#	66146765: [311,591,801,881,1181,136171,145041,155662]
+#	132961968: [311,591,801,881,1181,136171,145041]
+#	15096445: [311,591,801,881,1181,136171,145041,153071]
+#	172753273: [311,591,801,881,1181,136171,145041,171441]
+#	54152646: [311,591,801,881,1181,136171,145041,149751]						                       
