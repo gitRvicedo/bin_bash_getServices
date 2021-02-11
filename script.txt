@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Tenes que instalar jq: es una herramienta muy potente, pensada para trabajar con documentos JSON
+#Tenes que instalar jq: es una herramienta para trabajar con documentos JSON
 #  Para instalar jq en Ubuntu ejecutar los siguientes comandos:
 #  sudo apt-get update --> te pide clave de NT
 #  sudo apt-get install jq
